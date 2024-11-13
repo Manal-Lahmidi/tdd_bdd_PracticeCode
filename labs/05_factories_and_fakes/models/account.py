@@ -1,5 +1,5 @@
 """
-Account class
+Account classs
 """
 import logging
 from sqlalchemy.sql import func
