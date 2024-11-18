@@ -12,34 +12,41 @@ from selenium.webdriver.common.by import By
 
 @given('I am on the "Home Page"')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Given I am on the "Home Page"')
+    context.response = context.driver.get(context.base_url)
 
 
 @when('I set the "Category" to "dog"')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When I set the "Category" to "dog"')
+    element = context.driver.find_element(By.ID, 'pet_category')
+    element.clear()
+    element.send_keys('dog')
 
 
 @when('I click the "Search" button')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When I click the "Search" button')
+    element = context.driver.find_element(By.ID, 'search-btn')
+    element.click()
 
 
 @then('I should see the message "Success"')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then I should see the message "Success"')
+    element = context.driver.find_element(By.ID, 'flash_message')
+    assert "Success" in element.text
 
 
 @then('I should see "Fido" in the results')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then I should see "Fido" in the results')
-
+    element = context.driver.find_element(By.ID, 'search_results')
+    assert "Fido" in element.text
+    
 
 @then('I should not see "Kitty" in the results')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then I should not see "Kitty" in the results')
+    element = context.driver.find_element(By.ID, 'search_results')
+    assert "Kitty" not in element.text
 
 
 @then('I should not see "Leo" in the results')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then I should not see "Leo" in the results')
+    element = context.driver.find_element(By.ID, 'search_results')
+    assert "Leo" not in element.text
